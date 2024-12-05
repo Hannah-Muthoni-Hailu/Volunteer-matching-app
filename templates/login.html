@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="keywords" content="Volunteer, Aid">
+        <meta name="author" content="Hannah Hailu">
+        <meta http-equiv="refresh" content="30">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <title>Volunteer Mathcher</title>
+    </head>
+    <body style="height: 100vh; width: 100vw; overflow: hidden;">
+        <div class="blue-image">
+            <div class="tinted-image"></div>
+        </div>
+        <div class="form-section">
+            <div class="home-link">
+                <a href="{{url_for('home')}}">Home</a>
+            </div>
+            <img src="/static/images/download.png" alt="site logo" class="authentication-logo">
+            <form action="/login" method="POST">
+                <div class="form-group form-items">
+                    <input type="email" placeholder="example@domain.com" name="email" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group form-items">
+                    <input type="password" placeholder="password" name="password" class="form-control">
+                </div>
+                <div class="bottom-links" style="margin-top: 50px;">
+                    <a href="{{url_for('register')}}">Signup Instead?</a>
+                    <button type="submit">LOGIN</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

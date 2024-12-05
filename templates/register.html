@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="keywords" content="Volunteer, Aid">
+        <meta name="author" content="Hannah Hailu">
+        <meta http-equiv="refresh" content="30">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <title>Volunteer Mathcher</title>
+    </head>
+    <body style="height: 100vh; width: 100vw;">
+        <div class="blue-image">
+            <div class="tinted-image"></div>
+        </div>
+        <div class="form-section">
+            <div class="home-link">
+                <a href="{{url_for('home')}}">Home</a>
+            </div>
+            <img src="/static/images/download.png" alt="site logo" class="authentication-logo">
+            <form method="POST" class="form-card">
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <input type="text" id="fname" name="fname" placeholder="First Name" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <input type="text" id="lname" name="lname" placeholder="Last Name" class="form-control">
+                    </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-12 flex-column d-flex">
+                        <input type="email" placeholder="example@domain.com" name="email" class="form-control" aria-describedby="emailHelp">
+                    </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <input type="text" id="password" name="password" placeholder="password" class="form-control" aria-describedby="password">
+                    </div>
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <input type="text" id="password" name="repeat_password" placeholder="repeat password" class="form-control" aria-describedby="password">
+                    </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-12 flex-column d-flex">
+                        <input type="number" placeholder="phone number" name="phone-number" class="form-control" aria-describedby="phone-number">
+                    </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-12 flex-column d-flex">
+                        <select id="county" name="county" class="form-control">
+                            <option value="" disabled selected>Select County</option>
+                            <option value="Baringo">Baringo</option>
+                            <option value="Bomet">Bomet</option>
+                            <option value="Bungoma">Bungoma</option>
+                            <option value="Busia">Busia</option>
+                            <option value="Elgeyo-Marakwet">Elgeyo-Marakwet</option>
+                            <option value="Embu">Embu</option>
+                            <option value="Garissa">Garissa</option>
+                            <option value="Homa Bay">Homa Bay</option>
+                            <option value="Isiolo">Isiolo</option>
+                            <option value="Kajiado">Kajiado</option>
+                            <option value="Kakamega">Kakamega</option>
+                            <option value="Kericho">Kericho</option>
+                            <option value="Kiambu">Kiambu</option>
+                            <option value="Kilifi">Kilifi</option>
+                            <option value="Kirinyaga">Kirinyaga</option>
+                            <option value="Kisii">Kisii</option>
+                            <option value="Kisumu">Kisumu</option>
+                            <option value="Kitui">Kitui</option>
+                            <option value="Kwale">Kwale</option>
+                            <option value="Laikipia">Laikipia</option>
+                            <option value="Lamu">Lamu</option>
+                            <option value="Machakos">Machakos</option>
+                            <option value="Makueni">Makueni</option>
+                            <option value="Mandera">Mandera</option>
+                            <option value="Marsabit">Marsabit</option>
+                            <option value="Meru">Meru</option>
+                            <option value="Migori">Migori</option>
+                            <option value="Mombasa">Mombasa</option>
+                            <option value="Murang'a">Murang'a</option>
+                            <option value="Nairobi">Nairobi</option>
+                            <option value="Nakuru">Nakuru</option>
+                            <option value="Nandi">Nandi</option>
+                            <option value="Narok">Narok</option>
+                            <option value="Nyamira">Nyamira</option>
+                            <option value="Nyandarua">Nyandarua</option>
+                            <option value="Nyeri">Nyeri</option>
+                            <option value="Samburu">Samburu</option>
+                            <option value="Siaya">Siaya</option>
+                            <option value="Taita-Taveta">Taita-Taveta</option>
+                            <option value="Tana River">Tana River</option>
+                            <option value="Tharaka-Nithi">Tharaka-Nithi</option>
+                            <option value="Trans Nzoia">Trans Nzoia</option>
+                            <option value="Turkana">Turkana</option>
+                            <option value="Uasin Gishu">Uasin Gishu</option>
+                            <option value="Vihiga">Vihiga</option>
+                            <option value="Wajir">Wajir</option>
+                            <option value="West Pokot">West Pokot</option>
+                        </select>                        
+                    </div>
+                </div>
+                <div class="bottom-links">
+                    <a href="{{url_for('login')}}">Login instead?</a>
+                    <button type="submit">REGISTER</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

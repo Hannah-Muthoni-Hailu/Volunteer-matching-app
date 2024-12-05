@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="keywords" content="Volunteer, Aid">
+        <meta name="author" content="Hannah Hailu">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <title>Volunteer Mathcher</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img src="/static/images/download.png" alt="logo" width="50" height="50" class="rounded-circle">
+            <a href="{{url_for('dashboard')}}" class="navbar-brand ml-auto" id="avatar-icon"><i class="fa fa-user-circle-o" style="font-size:36px"></i></a>            
+        </nav>
+        <header class="p-5 d-flex flex-column flex-md-row justify-content-center">
+            <div class="d-flex flex-column align-self-center order-2 order-md-1">
+                <h1>Be The Change</h1>
+                <h3>You Want To See In The World</h3>
+                <p>Browse our extensive catalogue for amazing opportunities for you to help those in your community and beyond</p>
+            </div>
+            <div class="align-self-end order-1 order-md-2">
+                <img src="/static/images/Untitled design (1).png" alt="Volunteer woman carrying a box on her head" id="home-image">
+            </div>
+        </header>
+        <section>
+            <form role="search" id="search-form">
+                <button id="search-button">
+                <svg viewBox="0 0 1024 1024" id="search-icon"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+                </button>
+                <input type="text" placeholder="Browse Opportunities" id="search-bar" onkeyup="jobSearch()" title="Type a job specification">
+            </form>
+        </section>
+        <section class="m-5 d-flex flex-row justify-content-center flex-wrap align-items-center">
+            {% for opportunity in opportunities %}
+                <div class="card m-1" style="width: 18rem; height: 15rem;">
+                    <div class="card-body home-card">
+                        <h5 class="card-title">{{ opportunity.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ opportunity.position }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ opportunity.location }}</h6>
+                        <div style="height: 20%; overflow: hidden;">
+                            <p class="description">
+                                {{ opportunity.description }}
+                            </p>
+                            <ul class="specs">
+                                <li class="type">{{ opportunity.type }}</li>
+                                <li class="time-com">{{ opportunity.tim }}</li>
+                            </ul>
+                        </div>
+                        <p style="display: none;" class="apply-link">{{ opportunity.link }}</p>
+                        <button type="button" class="btn btn-primary modal-button" data-toggle="modal" data-target="#exampleModalLong">
+                        Learn More
+                        </button>                    
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="card-subtitle mb-2 text-muted" id="position-modal"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted" id="location-modal"></h6>
+                    <br>
+                    <p id="description-modal">
+                        Description
+                    </p>
+                    <ul class="specs">
+                        <li id="type">Remote</li>
+                        <li id="time-com">Time commitment</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary"><a id="apply" style="color: aliceblue; text-decoration: none;">Apply</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <script>
+            function jobSearch(){
+                var input;
+                input = document.getElementById("search-bar").value.toUpperCase();
+                var jobcard = document.getElementsByClassName("card")
+                for (var i = 0; i < jobcard.length; i++){
+                    var jobs = jobcard[i].children[0]
+                    var title = jobs.getElementsByClassName("card-title")[0]
+                    var titletext = title.textContent || title.innerText;
+                    var subtitle = jobs.getElementsByClassName("card-subtitle")[0]
+                    var subtitleText = subtitle.textContent || subtitle.innerText;
+                    var p = jobs.getElementsByClassName("card-text")[0]
+                    var pText = p.textContent || p.innerText;
+                    var allText = titletext + subtitleText + pText;
+                    if (allText.toUpperCase().indexOf(input) > -1){
+                        jobcard[i].style.display = "";
+                    }
+                    else{
+                        jobcard[i].style.display = "none";
+                    }
+                }
+            }
+        
+            var btns = document.getElementsByClassName("modal-button")
+            for (let i = 0; i < btns.length; i++){
+                btns[i].addEventListener("click",
+                    function(event){
+                        var p = event.target.parentElement
+                        var title = p.getElementsByClassName("card-title")[0].textContent || p.getElementsByClassName("card-title")[0].innerText
+                        document.getElementById("exampleModalLongTitle").innerHTML = title
+
+                        subtitles = p.getElementsByClassName("card-subtitle")
+                        var position = subtitles[0].textContent || subtitles[0].innerText
+                        document.getElementById("position-modal").innerHTML = position
+                        var location = subtitles[1].textContent || subtitles[1].innerText
+                        document.getElementById("location-modal").innerHTML = location
+
+                        var desc = p.getElementsByClassName("description")[0].textContent || p.getElementsByClassName("description")[0].innerText
+                        document.getElementById("description-modal").innerHTML = desc
+
+                        var type = p.getElementsByClassName("type")[0].textContent || p.getElementsByClassName("type")[0].innerText
+                        document.getElementById("type").innerHTML = type
+                        var timecom = p.getElementsByClassName("time-com")[0].textContent || p.getElementsByClassName("time-com")[0].innerText
+                        document.getElementById("time-com").innerHTML = timecom
+
+                        var link = p.getElementsByClassName("apply-link")[0].textContent || p.getElementsByClassName("apply-link")[0].innerText
+                        document.getElementById("apply").setAttribute("href", link)
+                    }
+                )
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
