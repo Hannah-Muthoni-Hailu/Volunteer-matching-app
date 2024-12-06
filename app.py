@@ -10,7 +10,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
-app.config["MONGO_URI"] = "mongodb+srv://muthonihannahhailu:N1MB5lOkKVqbajOc@volunteerapp.74vf4.mongodb.net/volunteer_system?retryWrites=true&w=majority&appName=VolunteerApp"
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 app.config["SESSION_TYPE"] = "mongodb"
 app.config["SESSION_MONGODB"] = PyMongo(app).cx
